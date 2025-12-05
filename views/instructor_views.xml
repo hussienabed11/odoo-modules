@@ -1,0 +1,45 @@
+<odoo>
+  <!-- Instructor: Tree View -->
+  <record id="view_instructor_tree" model="ir.ui.view">
+    <field name="name">courses.instructor.tree</field>
+    <field name="model">courses.instructor</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="email"/>
+        <field name="bio" widget="text"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- Instructor: Form View -->
+  <record id="view_instructor_form" model="ir.ui.view">
+    <field name="name">courses.instructor.form</field>
+    <field name="model">courses.instructor</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="email"/>
+            <field name="bio"/>
+            <field name="courses_id">
+              <tree>
+                <field name="name"/>
+                <field name="duration"/>
+              </tree>
+            </field>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Action for Instructors -->
+  <record id="action_instructors" model="ir.actions.act_window">
+    <field name="name">Instructors</field>
+    <field name="res_model">courses.instructor</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_id" ref="view_instructor_tree"/>
+  </record>
+</odoo>

@@ -1,0 +1,101 @@
+<odoo>
+    <!-- ==================== Courses Views ==================== -->
+    <record id="view_courses_tree_v2" model="ir.ui.view">
+        <field name="name">courses.course.tree.v2</field>
+        <field name="model">courses.course</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="duration"/>
+                <field name="price"/>
+                <field name="discount"/>
+                <field name="final_price"/>
+                <field name="profit"/>
+                <field name="instructor_id"/>
+                <field name="active"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_courses_form_v2" model="ir.ui.view">
+        <field name="name">courses.course.form.v2</field>
+        <field name="model">courses.course</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="description"/>
+                        <field name="duration"/>
+                        <field name="level"/>
+                        <field name="price"/>
+                        <field name="discount"/>
+                        <field name="final_price"/>
+                        <field name="tax" readonly="1"/>
+                        <field name="profit" readonly="1"/>
+                        <field name="profit_preview" readonly="1"/>
+                        <field name="max_students" readonly="1"/>
+                        <field name="instructor_id"/>
+                        <field name="student_ids" widget="many2many_tags"/>
+                        <field name="active"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action Courses -->
+    <record id="action_courses_v2" model="ir.actions.act_window">
+        <field name="name">Courses</field>
+        <field name="res_model">courses.course</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_courses_tree_v2"/>
+    </record>
+
+    <!-- ==================== Instructors Views ==================== -->
+    <record id="view_instructor_tree" model="ir.ui.view">
+        <field name="name">courses.instructor.tree</field>
+        <field name="model">courses.instructor</field>
+        <field name="arch" type="xml">
+            <tree>
+                <field name="name"/>
+                <field name="email"/>
+            </tree>
+        </field>
+    </record>
+
+    <record id="view_instructor_form" model="ir.ui.view">
+        <field name="name">courses.instructor.form</field>
+        <field name="model">courses.instructor</field>
+        <field name="arch" type="xml">
+            <form>
+                <sheet>
+                    <group>
+                        <field name="name"/>
+                        <field name="email"/>
+                        <field name="bio"/>
+                        <field name="courses_id">
+                            <tree>
+                                <field name="name"/>
+                                <field name="duration"/>
+                            </tree>
+                        </field>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <!-- Action Instructors -->
+    <record id="action_instructors" model="ir.actions.act_window">
+        <field name="name">Instructors</field>
+        <field name="res_model">courses.instructor</field>
+        <field name="view_mode">tree,form</field>
+        <field name="view_id" ref="view_instructor_tree"/>
+    </record>
+
+    <!-- ==================== Menus ==================== -->
+    <menuitem id="menu_courses_root" name="Courses V2" sequence="10"/>
+    <menuitem id="menu_courses" name="Courses" parent="menu_courses_root" action="action_courses_v2" sequence="10"/>
+    <menuitem id="menu_instructors" name="Instructors" parent="menu_courses_root" action="action_instructors" sequence="20"/>
+</odoo>

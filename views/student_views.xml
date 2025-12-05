@@ -1,0 +1,49 @@
+<odoo>
+  <!-- Tree View -->
+  <record id="view_student_tree" model="ir.ui.view">
+    <field name="name">courses.student.tree</field>
+    <field name="model">courses.student</field>
+    <field name="arch" type="xml">
+      <tree>
+        <field name="name"/>
+        <field name="email"/>
+        <field name="age"/>
+        <field name="level"/>
+      </tree>
+    </field>
+  </record>
+
+  <!-- Form View -->
+  <record id="view_student_form" model="ir.ui.view">
+    <field name="name">courses.student.form</field>
+    <field name="model">courses.student</field>
+    <field name="arch" type="xml">
+      <form>
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="email"/>
+            <field name="age"/>
+            <field name="country"/>
+            <field name="course_ids" widget="many2many_tags"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <!-- Action -->
+  <record id="action_students" model="ir.actions.act_window">
+    <field name="name">Students</field>
+    <field name="res_model">courses.student</field>
+    <field name="view_mode">tree,form</field>
+    <field name="view_id" ref="view_student_tree"/>
+  </record>
+
+  <!-- Menus -->
+  <menuitem id="menu_courses_root" name="Courses V2" sequence="10"/>
+  <!-- لو action_courses_v2 معرف عندك: -->
+  <menuitem id="menu_courses" name="Courses" parent="menu_courses_root" action="courses_v2.action_courses_v2" sequence="10"/>
+  <menuitem id="menu_instructors" name="Instructors" parent="menu_courses_root" action="courses_v2.action_instructors" sequence="20"/>
+  <menuitem id="menu_students" name="Students" parent="menu_courses_root" action="courses_v2.action_students" sequence="30"/>
+</odoo>

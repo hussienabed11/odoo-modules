@@ -1,0 +1,43 @@
+<odoo>
+  <record id="view_premium_course_tree" model="ir.ui.view">
+    <field name="name">courses.premium_course.tree</field>
+    <field name="model">courses.premium_course</field>
+    <field name="arch" type="xml">
+      <tree string="Premium Courses">
+        <field name="name"/>
+        <field name="duration"/>
+        <field name="premium_level"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_premium_course_form" model="ir.ui.view">
+    <field name="name">courses.premium_course.form</field>
+    <field name="model">courses.premium_course</field>
+    <field name="arch" type="xml">
+      <form string="Premium Course">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="description"/>
+            <field name="duration"/>
+            <field name="instructor_id"/>
+            <field name="student_ids" widget="many2many_tags"/>
+            <field name="premium_level"/>
+            <field name="extra_material"/>
+            <field name="bonus_certificate"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_premium_course" model="ir.actions.act_window">
+    <field name="name">Premium Courses</field>
+    <field name="res_model">courses.premium_course</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem id="menu_courses_root" name="Courses"/>
+  <menuitem id="menu_premium_course" name="Premium Courses" parent="menu_courses_root" action="action_premium_course"/>
+</odoo>

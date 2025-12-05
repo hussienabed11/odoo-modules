@@ -1,0 +1,43 @@
+<odoo>
+  <record id="view_advanced_course_tree" model="ir.ui.view">
+    <field name="name">courses.advanced.tree</field>
+    <field name="model">courses.advanced</field>
+    <field name="arch" type="xml">
+      <tree string="Advanced Courses">
+        <field name="name"/>
+        <field name="duration"/>
+        <field name="level"/>
+        <field name="certificate"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_advanced_course_form" model="ir.ui.view">
+    <field name="name">courses.advanced.form</field>
+    <field name="model">courses.advanced</field>
+    <field name="arch" type="xml">
+      <form string="Advanced Course">
+        <sheet>
+          <group>
+            <field name="name"/>
+            <field name="description"/>
+            <field name="duration"/>
+            <field name="instructor_id"/>
+            <field name="student_ids" widget="many2many_tags"/>
+            <field name="level"/>
+            <field name="certificate"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="action_courses_advanced" model="ir.actions.act_window">
+    <field name="name">Advanced Courses</field>
+    <field name="res_model">courses.advanced</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem id="menu_courses_root" name="Courses"/>
+  <menuitem id="menu_courses_advanced" name="Advanced Courses" parent="menu_courses_root" action="action_courses_advanced"/>
+</odoo>

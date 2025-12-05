@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <!-- 1) Inherit Form view: add fields + Publish button + readonly name when published -->
+   <record id="view_courses_form_v2_inherit" model="ir.ui.view">
+        <field name="name">courses.course.form.v2.inherit</field>
+        <field name="model">courses.course</field>
+        <field name="inherit_id" ref="courses_v2.view_courses_form_v2"/>
+        <field name="arch" type="xml">
+            <xpath expr="//sheet" position="inside">
+                <button name="action_publish" string="Publish" type="object" class="oe_highlight"/>
+            </xpath>
+        </field>
+    </record>
+
+  <!-- 2) Inherit Tree view: add level and published columns -->
+  <record id="view_courses_tree_v2_inherit" model="ir.ui.view">
+    <field name="name">courses.course.tree.v2.inherit</field>
+    <field name="model">courses.course</field>
+    <field name="inherit_id" ref="view_courses_tree_v2"/>
+    <field name="arch" type="xml">
+      <xpath expr="//tree" position="inside">
+        <field name="level"/>
+        <field name="published"/>
+      </xpath>
+    </field>
+  </record>
+
+  <!-- 3) Add a Search view (original not present in your module) -->
+  <record id="view_courses_search_v2" model="ir.ui.view">
+    <field name="name">courses.course.search.v2</field>
+    <field name="model">courses.course</field>
+    <field name="arch" type="xml">
+      <search>
+        <field name="name"/>
+        <field name="instructor_id"/>
+        <filter name="filter_published" string="Published" domain="[('published','=',True)]"/>
+        <filter name="filter_advanced" string="Advanced" domain="[('level','=','advanced')]"/>
+      </search>
+    </field>
+  </record>
+</odoo>

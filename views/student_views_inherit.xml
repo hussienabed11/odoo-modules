@@ -1,0 +1,20 @@
+<odoo>
+    <record id="view_student_form_replace" model="ir.ui.view">
+        <field name="name">courses.student.form.replace</field>
+        <field name="model">courses.student</field>
+        <field name="inherit_id" ref="courses_v2.view_student_form"/>
+        <field name="arch" type="xml">
+            <!-- نعمل replace للـ group داخل sheet -->
+            <xpath expr="//sheet/group" position="replace">
+                <group>
+                    <field name="name"/>
+                    <field name="email"/>
+                    <field name="country"/>
+                    <field name="level"/>
+                    <field name="age"/>
+                    <field name="course_ids" widget="many2many_tags"/>
+                </group>
+            </xpath>
+        </field>
+    </record>
+</odoo>
